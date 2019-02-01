@@ -1,4 +1,4 @@
-package whiteship;
+package sample;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

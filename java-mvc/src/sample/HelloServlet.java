@@ -1,4 +1,4 @@
-package whiteship;
+package sample;
 
 import java.io.IOException;
 

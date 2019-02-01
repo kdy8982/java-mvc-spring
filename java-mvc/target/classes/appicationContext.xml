@@ -29,7 +29,7 @@
 
 	<tx:annotation-driven />
 
-	<!-- 아이바티스 -->
+	<!-- 아이바티스  -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />

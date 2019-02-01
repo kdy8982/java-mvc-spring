@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- @Controller에서만 사용하게끔 설정. applicationContext.xml의 설정과는 차이가 있음. -->
+	<context:component-scan base-package="sample" use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>		
+	</context:component-scan>
+
+	<mvc:annotation-driven/>
+	
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+		<map>
+			<entry key="atom" value="application/atom+xml" />
+			<entry key="html" value="text/html" />
+			<entry key="json" value="application/json" />
+		</map>
+		</property>
+		
+		<!-- 사용자가 원하는 뷰와, 컨트롤러가 제공할 수 있는 뷰와 대조하여, 최종적인 뷰를 결정하는 "뷰리졸버" -->
+		<property name="viewResolvers">
+		<list>
+			<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+			<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+				<property name="prefix" value="/WEB-INF/views/" />
+				<property name="suffix" value=".jsp" />
+			</bean>
+		</list>
+		</property>
+		
+		<!-- .json요청에 대한 부분 -->
+		<property name="defaultViews">
+		<list>
+			<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+		</list>
+		</property>
+	</bean>
+</beans>

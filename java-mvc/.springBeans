@@ -9,6 +9,7 @@
 	<configs>
 		<config>web/WEB-INF/spring-servlet.xml</config>
 		<config>src/appicationContext.xml</config>
+		<config>web/WEB-INF/spring/webmvc-config.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
